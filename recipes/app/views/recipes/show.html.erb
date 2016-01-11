@@ -1,0 +1,42 @@
+<div id="main-container" class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <h1><%= @recipe.name %></h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-9">
+      <p><%= @recipe.description %></p>
+      <p>Preparation time: <%= @recipe.preparation_time %> minutes</p>
+      <p> Servings Yielded: <%= @recipe.servings_yielded %></p>
+      <p><%= @recipe.likes%> likes</p>
+      (<%= link_to 'like', like_recipe_path(@recipe), method: :patch %>)
+      <%= link_to 'permalink', permalink_path(@recipe.shortcode)%>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <h2>Ingredients</h2>
+      <ul>
+        <% @recipe.ingredients.each do |ingredient| %>
+        <li>
+          <%= ingredient.amount %> <%= ingredient.unit %> <%= ingredient.name %>
+          <small>
+            <%= link_to 'remove', recipe_ingredient_path(@recipe, ingredient),
+            method: :delete,
+            data: {confirm: "Remove #{ingredient.name} from the recipe?", class: "btn btn-sm"}%>
+            <%= link_to 'edit', edit_recipe_ingredient_path(@recipe, ingredient), class: "btn btn-sm" %>
+
+          </small>
+        </li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+  <%= link_to 'Add New Ingredient', new_recipe_ingredient_path(@recipe), class: "btn btn-sm" %>
+  <td><%= link_to 'All Recipes', recipes_path, class: "btn btn-sm"%></td>
+</div>

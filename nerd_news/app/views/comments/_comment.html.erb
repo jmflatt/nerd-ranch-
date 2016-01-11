@@ -1,0 +1,20 @@
+<div class="list-group-item">
+  <div class="list-group-item-text">
+    <%= link_to 'Close Thread', comment_close_thread_path(comment), method: :post %>
+    <h4 class="list-group-item-heading">
+      <%= comment.user.email %>
+      <%= time_ago_in_words comment.created_at %> ago
+    </h4>
+    <%= simple_format comment.body%>
+    <p>
+      <%= link_to 'Permalink', comment_url(comment)%>
+      <%= link_to 'Reply', '#reply', data:{toggle: 'collapse', target: "##{dom_id(comment)}-reply"}%>
+    </p>
+    <div class="collapse" id="<%= dom_id(comment)%>-reply">
+      <%= render 'comments/form', comment: current_user.comments.new(commentable: comment)%>
+    </div>
+    <div class="list-group">
+      <%= render comment.comments %>
+    </div>
+  </div>
+</div>

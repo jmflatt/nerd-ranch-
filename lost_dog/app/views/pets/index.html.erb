@@ -1,0 +1,38 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path%></li>
+  <li class="active"></li>
+</ol>
+
+<h1>All Missing Pets</h2>
+
+<div>
+  <%= link_to "Create a New Entry", new_pet_path %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Breed</td>
+      <td>color</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pets.each do |pet| %>
+      <tr>
+        <td><%= pet.name %></td>
+        <td><%= pet.breed %></td>
+        <td><%= pet.color %></td>
+        <td><%= pet.last_seen_at %></td>
+        <td>
+          <%= link_to "View", pet_path(pet) %> |
+          <%= link_to "Edit", edit_pet_path(pet) %>
+          <%= link_to "Delete", pet_path(pet),
+          method: :delete,
+          data: {confirm: "Are You Sure" }%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

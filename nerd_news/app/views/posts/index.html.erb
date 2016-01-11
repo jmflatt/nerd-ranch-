@@ -1,0 +1,45 @@
+<ol class="breadcrumb">
+  <li class="active">Home</li>
+  <%= link_to "Add New Post", new_post_path, class:'pull-right' %>
+
+</ol>
+
+<div class="container">
+  <%@posts.each do |post|%>
+  <div class="container">
+    <div class='col-xs-1' align="middle">
+      <div>
+        <%= form_for current_user.up_votes.new(votable: post) do |f|%>
+        <%= f.hidden_field :votable_type %>
+        <%= f.hidden_field :votable_id %>
+        <%= f.button type: :submit, class: 'btn btn-default' do %>
+        <span class="glyphicon glyphicon-arrow-up" ></span>
+        <% end %>
+        <% end %>
+      </div>
+      <span><%= post.up_votes.count - post.down_votes.count %></span>
+      <div>
+        <%= form_for current_user.down_votes.new(votable: post) do |f|%>
+        <%= f.hidden_field :votable_type %>
+        <%= f.hidden_field :votable_id %>
+        <%= f.button type: :submit, class: 'btn btn-default' do %>
+        <span class="glyphicon glyphicon-arrow-down" ></span>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-7 col-xs-11">
+      <div class="info">
+        <h3 class="list-group-item-heading">
+          <span><%= link_to post.headline, post_path(post)%></span>
+        </h3>
+      </div>
+    </div>
+    <div class="col-xs-7">
+      <span><%= post.description %></span>
+    </div>
+
+  </div>
+  <%end%>
+
+</div>

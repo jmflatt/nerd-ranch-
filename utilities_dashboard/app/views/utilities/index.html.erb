@@ -1,0 +1,19 @@
+<ol class="breadcrumb">
+  <li><%=  link_to 'Home', root_path%></li>
+  <li class="active">Utilities</li>
+</ol>
+
+<%= link_to 'New Utility', new_utility_path, class: 'btn btn-success pull-right'%>
+<h2>Utilities</h2>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+  <% @utilities.each do |utility|%>
+  <tr>
+    <td><%= utility.name %></td>
+    </tr>
+    <% end %>
+  </table>

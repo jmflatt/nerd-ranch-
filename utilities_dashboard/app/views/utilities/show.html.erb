@@ -1,0 +1,19 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path%></li>
+  <li><%= link_to 'Utilities', utilities_path %></li>
+  <li class="active"><%= @utility.name %></li>
+</ol>
+
+<h2><%= @utility.name%></h2>
+<% unless @utility.bills.empty?%>
+  <h3>Bills</h3>
+    <% @utility.bills.each do |bill| %>
+        <table class="table">
+          <tr>
+          <th>Amount: </th>  <td><%= number_to_currency(bill.amount)%></td>
+          <th>Due On: </th>  <td><%= bill.due_on %></td>
+          <th></th>
+      <%end%>
+    <%end%>
+  </tr>
+</table>

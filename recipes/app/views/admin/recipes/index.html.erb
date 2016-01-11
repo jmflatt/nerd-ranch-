@@ -1,0 +1,31 @@
+<div id="main-container" class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <h1>Recipes Admin</h1>
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td><%= recipe.name %></td>
+        <td><%= recipe.description %></td>
+        <td>
+          <%= link_to 'show', recipe %>
+          <%= link_to 'edit', edit_recipe_path(recipe)%>
+          <%= link_to 'delete', admin_recipe_path(recipe), method: :delete,
+          data: {confirm: "Delete recipe for #{recipe.name}?" } %>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,7 @@
+<%= form_for([recipe, ingredient]) do |f| %>
+<%= pretty_text_field(f, :name)%>
+<%= pretty_text_field(f, :amount)%>
+<%= pretty_text_field(f, :unit)%>
+
+<%= f.submit %>
+<% end %>

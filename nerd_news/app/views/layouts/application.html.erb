@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nerd News</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>Nerd News</h1>
+    </div>
+
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+        data-target="#main-menu">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar" ></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="main-menu">
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Home', root_path %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><p class="navbar-text">Signed in as <%= current_user.email %></p></li>
+          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+        <%end%>
+      </ul>
+    </div>
+  </nav>
+
+  <% flash.each do |severity, message| %>
+  <div class="alert alert- <%=severity%>">
+    <%= message %>
+  </div>
+  <%end%>
+  <%= yield %>
+</div>
+</body>
+</html>

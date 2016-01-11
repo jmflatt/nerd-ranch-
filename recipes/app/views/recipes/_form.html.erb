@@ -1,0 +1,7 @@
+<%= form_for(recipe) do |f| %>
+  <%= pretty_text_field(f, :name) %>
+  <%= pretty_text_field(f, :description) %>
+  <%= pretty_text_field(f, :preparation_time) %>
+  <%= pretty_text_field(f, :servings_yielded) %>
+  <%= f.submit %>
+<% end %>

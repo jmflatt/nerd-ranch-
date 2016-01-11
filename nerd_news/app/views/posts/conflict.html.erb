@@ -1,0 +1,15 @@
+<h2>Fix Conflict</h2>
+
+<p>
+Another user has updated this poast and a conflict has occured.
+Please try again. You submitted the following updates:
+</p>
+
+<dl>
+  <dt>URL</dt>
+  <dd><%= params[:post][:url] %></dd>
+  <dt>Headline</dt>
+  <dd><%= params[:post][:headline] %></dd>
+</dl>
+
+<%= render 'form', post: @post %>

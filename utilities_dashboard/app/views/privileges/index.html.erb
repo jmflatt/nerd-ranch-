@@ -1,0 +1,32 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path%></li>
+  <li><%= link_to 'Utilities', utilities_path%></li>
+  <li><%= link_to @utility.name, utility_path(@utility)%></li>
+  <li class="active">User Privileges</li>
+</ol>
+
+<%= link_to 'New Privilege', new_utility_privilege_path(@utility),
+    class: 'btn btn-success pull-right'%>
+<h2>User Privileges</h2>
+
+<table class="table">
+  <tr>
+    <th>User</th>
+    <th>Permission</th>
+    <th></th>
+  </tr>
+  <% @privileges.each do |privilege| %>
+    <tr>
+      <td><%= privilege.user.email %></td>
+      <td><%= privilege.permission.humanize %></td>
+      <td>
+        <%if policy(privilege).destroy? %>
+          <%= link_to 'Delete', utility_privilege_path(privilege.utility, privilege),
+              method: :delete,
+              class: 'btn btn-danger',
+              data: {confrim: 'Delete Privilege?'}  %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
